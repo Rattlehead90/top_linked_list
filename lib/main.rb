@@ -8,10 +8,17 @@ class LinkedList
 
   def append(value)
     if @head_node
-      @head_node.next_node = Node.new(value)
+      find_tail.next_node = Node.new(value)
     else
       @head_node = Node.new(value)
     end
+  end
+
+  def find_tail
+    current_node = @head_node
+    return current_node unless current_node.next_node
+
+    return current_node unless current_node.next_node while (current_node = current_node.next_node)
   end
 
   def prepend(value)
@@ -22,6 +29,16 @@ class LinkedList
     else
       @head_node = Node.new(value)
     end
+  end
+
+  def size
+    i = @head_node ? 1 : 0
+    current_node = @head_node
+    while current_node.next_node
+      i += 1
+      current_node = current_node.next_node
+    end
+    i
   end
 end
 
@@ -42,3 +59,8 @@ our_linked_list.prepend('this is a second node\'s value!')
 
 puts our_linked_list.head_node.value
 puts our_linked_list.head_node.next_node.value
+our_linked_list.append('third')
+puts our_linked_list.head_node.next_node.value
+our_linked_list.append('fourth')
+our_linked_list.append('five')
+puts our_linked_list.size
