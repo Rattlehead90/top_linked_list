@@ -13,6 +13,16 @@ class LinkedList
       @head_node = Node.new(value)
     end
   end
+
+  def prepend(value)
+    if @head_node
+      new_head_node = Node.new(value)
+      new_head_node.next_node = @head_node
+      @head_node = new_head_node
+    else
+      @head_node = Node.new(value)
+    end
+  end
 end
 
 # Node is a basic data structure that stores a value and a pointer to the
@@ -28,7 +38,7 @@ end
 
 our_linked_list = LinkedList.new
 our_linked_list.append('this is a head node\'s value')
-our_linked_list.append('this is a second node\'s value!')
+our_linked_list.prepend('this is a second node\'s value!')
 
 puts our_linked_list.head_node.value
 puts our_linked_list.head_node.next_node.value
