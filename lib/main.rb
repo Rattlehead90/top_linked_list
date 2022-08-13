@@ -1,44 +1,55 @@
 # Linked list is a basic data structure consisting of nodes.
 class LinkedList
-  attr_accessor :head_node
+  attr_accessor :head
 
-  def initialize(head_node = nil)
-    @head_node = head_node
+  def initialize(head = nil)
+    @head = head
   end
 
   def append(value)
-    if @head_node
-      find_tail.next_node = Node.new(value)
+    if @head
+      tail.next_node = Node.new(value)
     else
-      @head_node = Node.new(value)
+      @head = Node.new(value)
     end
   end
 
-  def find_tail
-    current_node = @head_node
+  def tail
+    current_node = @head
     return current_node unless current_node.next_node
 
     return current_node unless current_node.next_node while (current_node = current_node.next_node)
   end
 
   def prepend(value)
-    if @head_node
-      new_head_node = Node.new(value)
-      new_head_node.next_node = @head_node
-      @head_node = new_head_node
+    if @head
+      new_head = Node.new(value)
+      new_head.next_node = @head
+      @head = new_head
     else
-      @head_node = Node.new(value)
+      @head = Node.new(value)
     end
   end
 
   def size
-    i = @head_node ? 1 : 0
-    current_node = @head_node
+    i = @head ? 1 : 0
+    current_node = @head
     while current_node.next_node
       i += 1
       current_node = current_node.next_node
     end
     i
+  end
+
+  def at(index)
+    current_node = @head
+    while index.positive?
+      return 'Exceeded length' unless current_node.next_node
+
+      current_node = current_node.next_node
+      index -= 1
+    end
+    current_node
   end
 end
 
@@ -57,10 +68,13 @@ our_linked_list = LinkedList.new
 our_linked_list.append('this is a head node\'s value')
 our_linked_list.prepend('this is a second node\'s value!')
 
-puts our_linked_list.head_node.value
-puts our_linked_list.head_node.next_node.value
+puts our_linked_list.head.value
+puts our_linked_list.head.next_node.value
 our_linked_list.append('third')
-puts our_linked_list.head_node.next_node.value
+puts our_linked_list.head.next_node.value
 our_linked_list.append('fourth')
 our_linked_list.append('five')
 puts our_linked_list.size
+
+node_at_index_3 = our_linked_list.at(3)
+puts node_at_index_3.value
