@@ -75,11 +75,21 @@ class LinkedList
     index = 0
     while current_node.next_node
       return index if current_node.value == value
-      
+
       index += 1 
       current_node = current_node.next_node
     end
     nil
+  end
+
+  def to_s
+    result = ''
+    current_node = @head
+    while current_node.next_node
+      result << " (#{current_node.value}) ->" 
+      current_node = current_node.next_node
+    end
+    result << "(#{self.tail.value})"
   end
 end
 
@@ -109,4 +119,4 @@ puts our_linked_list.size
 node_at_index_3 = our_linked_list.at(3)
 puts node_at_index_3.value
 
-puts our_linked_list.find('fourth')
+puts our_linked_list.to_s
