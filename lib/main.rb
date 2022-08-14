@@ -121,29 +121,3 @@ class Node
     @next_node = next_node
   end
 end
-
-our_linked_list = LinkedList.new
-our_linked_list.append('this is a head node\'s value')
-our_linked_list.append('this is a second node\'s value!')
-
-puts our_linked_list.head.value
-puts our_linked_list.head.next_node.value
-our_linked_list.append('third')
-puts our_linked_list.head.next_node.value
-our_linked_list.append('fourth')
-our_linked_list.append('five')
-puts our_linked_list.size
-
-node_at_index_3 = our_linked_list.at(3)
-puts node_at_index_3.value
-
-puts 'before insert'
-puts our_linked_list.to_s
-puts 'after insert at 2 '
-our_linked_list.insert_at('inserted value', 2)
-puts our_linked_list.to_s
-
-puts 'before #remove_at(2) ^^^^^^'
-puts 'after'
-our_linked_list.remove_at(2)
-puts our_linked_list.to_s
