@@ -64,9 +64,22 @@ class LinkedList
     current_node = @head
     while current_node.next_node
       return true if current_node.value == value
+
       current_node = current_node.next_node
     end
     false
+  end
+
+  def find(value)
+    current_node = @head
+    index = 0
+    while current_node.next_node
+      return index if current_node.value == value
+      
+      index += 1 
+      current_node = current_node.next_node
+    end
+    nil
   end
 end
 
@@ -96,4 +109,4 @@ puts our_linked_list.size
 node_at_index_3 = our_linked_list.at(3)
 puts node_at_index_3.value
 
-puts our_linked_list.contains?('fourth')
+puts our_linked_list.find('fourth')
