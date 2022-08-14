@@ -59,6 +59,15 @@ class LinkedList
       @head = nil
     end
   end
+
+  def contains?(value)
+    current_node = @head
+    while current_node.next_node
+      return true if current_node.value == value
+      current_node = current_node.next_node
+    end
+    false
+  end
 end
 
 # Node is a basic data structure that stores a value and a pointer to the
@@ -87,8 +96,4 @@ puts our_linked_list.size
 node_at_index_3 = our_linked_list.at(3)
 puts node_at_index_3.value
 
-puts "Linked list's length before #pop: #{our_linked_list.size}"
-puts "Linked list's last node value before #pop: #{our_linked_list.tail.value}"
-our_linked_list.pop
-puts "Linked list's length after #pop: #{our_linked_list.size}"
-puts "Linked list's last node value after #pop: #{our_linked_list.tail.value}"
+puts our_linked_list.contains?('fourth')
