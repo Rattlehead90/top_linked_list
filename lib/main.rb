@@ -91,7 +91,7 @@ class LinkedList
     end
     result << "(#{self.tail.value})"
   end
-# 0 1 2 3 4 === 2? === 0 1 {} 2 3 4 === 0 1 2 3 4 5 
+
   def insert_at(value, index)
     return false if index > self.size - 1
 
@@ -100,6 +100,14 @@ class LinkedList
     newcomer = Node.new(value)
     newcomer.next_node = current_occupier
     predecessor.next_node = newcomer
+  end
+
+  def remove_at(index)
+    return false if index > self.size - 1 
+
+    node_to_remove = self.at(index)
+    predecessor = self.at(index - 1)
+    predecessor.next_node = node_to_remove.next_node
   end
 end
 
@@ -133,4 +141,9 @@ puts 'before insert'
 puts our_linked_list.to_s
 puts 'after insert at 2 '
 our_linked_list.insert_at('inserted value', 2)
+puts our_linked_list.to_s
+
+puts 'before #remove_at(2) ^^^^^^'
+puts 'after'
+our_linked_list.remove_at(2)
 puts our_linked_list.to_s
