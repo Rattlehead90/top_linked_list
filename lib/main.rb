@@ -91,6 +91,16 @@ class LinkedList
     end
     result << "(#{self.tail.value})"
   end
+# 0 1 2 3 4 === 2? === 0 1 {} 2 3 4 === 0 1 2 3 4 5 
+  def insert_at(value, index)
+    return false if index > self.size - 1
+
+    predecessor = self.at(index - 1)
+    current_occupier = self.at(index)
+    newcomer = Node.new(value)
+    newcomer.next_node = current_occupier
+    predecessor.next_node = newcomer
+  end
 end
 
 # Node is a basic data structure that stores a value and a pointer to the
@@ -106,7 +116,7 @@ end
 
 our_linked_list = LinkedList.new
 our_linked_list.append('this is a head node\'s value')
-our_linked_list.prepend('this is a second node\'s value!')
+our_linked_list.append('this is a second node\'s value!')
 
 puts our_linked_list.head.value
 puts our_linked_list.head.next_node.value
@@ -119,4 +129,8 @@ puts our_linked_list.size
 node_at_index_3 = our_linked_list.at(3)
 puts node_at_index_3.value
 
+puts 'before insert'
+puts our_linked_list.to_s
+puts 'after insert at 2 '
+our_linked_list.insert_at('inserted value', 2)
 puts our_linked_list.to_s
