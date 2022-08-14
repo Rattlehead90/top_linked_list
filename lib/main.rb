@@ -51,6 +51,14 @@ class LinkedList
     end
     current_node
   end
+
+  def pop
+    if @head.next_node
+      self.at(self.size - 2).next_node = nil
+    else
+      @head = nil
+    end
+  end
 end
 
 # Node is a basic data structure that stores a value and a pointer to the
@@ -78,3 +86,9 @@ puts our_linked_list.size
 
 node_at_index_3 = our_linked_list.at(3)
 puts node_at_index_3.value
+
+puts "Linked list's length before #pop: #{our_linked_list.size}"
+puts "Linked list's last node value before #pop: #{our_linked_list.tail.value}"
+our_linked_list.pop
+puts "Linked list's length after #pop: #{our_linked_list.size}"
+puts "Linked list's last node value after #pop: #{our_linked_list.tail.value}"
