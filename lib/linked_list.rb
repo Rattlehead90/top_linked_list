@@ -58,10 +58,13 @@ class LinkedList
 
   def pop
     if @head.next_node
+      node_to_pop = self.tail
       self.at(self.size - 2).next_node = nil
     else
+      node_to_pop = @head
       @head = nil
     end
+    node_to_pop
   end
 
   def contains?(value)
@@ -125,3 +128,10 @@ class Node
     @next_node = next_node
   end
 end
+
+
+linked_list = LinkedList.new(1)
+linked_list.append(4)
+linked_list.append(5)
+puts linked_list.pop.value
+puts linked_list.size
