@@ -6,6 +6,10 @@ class LinkedList
     @head = head
   end
 
+  def empty?
+    @head.nil?
+  end
+
   def append(value)
     if @head
       tail.next_node = Node.new(value)
