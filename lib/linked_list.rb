@@ -3,7 +3,7 @@ class LinkedList
   attr_accessor :head
 
   def initialize(head = nil)
-    @head = head
+    @head = Node.new(head)
   end
 
   def empty?
